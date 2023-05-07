@@ -1,30 +1,32 @@
 #pragma once
 #include <iostream>
 
-template <typename T>
 class Node {
 	Node* link;
-	T data;
+	float coef;
+	int degree;
 public:
-	Node(int val = 0)
-		: data(val) {
+	Node(float c = 0, int d = 0)
+		: coef(c), degree(d) {
 		link = NULL;
 	}
 	Node* getLink() {
 		return link;
 	}
-	T getData() {
-		return data;
-	}
 	void setLink(Node* next) {
 		link = next;
 	}
 	void display() {
-		std::cout << " " << data;
+		std::cout << std::fixed;
+		std::cout.precision(1);
+		std::cout << coef << " x^" << degree << " + ";
 	}
-	bool hasdata(int val) {
-		return data == val;
+	void display2() {
+		std::cout << std::fixed;
+		std::cout.precision(1);
+		std::cout << coef << " x^" << degree ;
 	}
+
 	void insertNext(Node* n) {
 		if (n != NULL) {
 			n->link = link;
@@ -38,4 +40,5 @@ public:
 		}
 		return removed;
 	}
+	friend class LinkedList;
 };
